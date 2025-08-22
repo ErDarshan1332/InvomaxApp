@@ -9,7 +9,7 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="lib\Invomax_v0-Preloader.jar" size="3294776" download="progress" />
-    <jar href="Invomax_v0.jar" size="11248054" download="eager" />
+    <jar href="Invomax_v0.jar" size="11247957" download="eager" />
     <jar href="lib\HikariCP-3.4.5.jar" size="156005" download="eager" />
     <jar href="lib\javafx-swt.jar" size="36882" download="eager" />
     <jar href="lib\javafx.base.jar" size="753700" download="eager" />

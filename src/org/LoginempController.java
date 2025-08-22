@@ -47,18 +47,19 @@ public class LoginempController implements Initializable {
     private static HikariDataSource dataSource;
 
     static {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/centralized_db?useSSL=false&serverTimezone=UTC");
-        config.setUsername("root");
-        config.setPassword("Invomax@2025");
-        config.setMaximumPoolSize(20); // 20 simultaneous connections
-        config.setMinimumIdle(2);
-        config.setIdleTimeout(60000);
-        config.setMaxLifetime(1800000);
-        config.setConnectionTimeout(30000);
-        config.setPoolName("InvomaxPool");
-        dataSource = new HikariDataSource(config);
-    }
+    HikariConfig config = new HikariConfig();
+    config.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/centralized_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
+    config.setUsername("root");
+    config.setPassword("Invomax@2025");
+    config.setMaximumPoolSize(20); // 20 simultaneous connections
+    config.setMinimumIdle(2);
+    config.setIdleTimeout(60000);
+    config.setMaxLifetime(1800000);
+    config.setConnectionTimeout(30000);
+    config.setPoolName("InvomaxPool");
+    dataSource = new HikariDataSource(config);
+}
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

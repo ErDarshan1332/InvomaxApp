@@ -26,20 +26,24 @@ public class invomax_v0 extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("loginemp.fxml"));
-            
-            Scene scene = new Scene(root);
-            primaryStage.setTitle("Invomax Engineering Solution LLP");
-            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("emp_logo.png")));
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(invomax_v0.class.getName()).log(Level.SEVERE, null, ex);
-        }
+public void start(Stage primaryStage) {
+    try {
+        // जर fxml resources/org/ui/ मध्ये असेल
+        Parent root = FXMLLoader.load(getClass().getResource("loginemp.fxml"));
+
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Invomax Engineering Solution LLP");
+
+        // icon path check
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("emp_logo.png")));
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    } catch (Exception ex) {
+        ex.printStackTrace(); // सर्व errors console मध्ये दिसतील
     }
+}
 
     public static void main(String[] args) {
         // Launch application with preloader
