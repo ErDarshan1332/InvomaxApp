@@ -1,0 +1,18 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+
+#login_main{
+    -fx-background-color: rgba(22, 23, 23, 0.72);
+    -fx-background-radius: 16px;
+    -fx-border-color: rgba(22, 23, 23, 0.3);
+    -fx-border-width: 1px;
+    -fx-border-radius: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 30, 0, 0, 4);
+    -fx-font-color:white;
+}
+.logbtns{
+    -fx-background-color:greenyellow;
+}
+

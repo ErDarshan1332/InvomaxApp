@@ -1,0 +1,80 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-color: #8DBCC7;
+}
+/*#sideview{
+    -fx-background-color: rgba(0, 0, 0, 0.72);
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-border-radius: 0px 16px 16px 0px;
+    -fx-border-color: rgba(0, 0, 0, 0.3);
+    -fx-border-width: 1px;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 30, 0.1, 0, 4);
+}*/
+.mainbar{
+    -fx-background-color: rgba(141, 188, 199, 0.81);
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: rgba(141, 188, 199, 0.3);
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 30, 0, 0, 4);
+    -fx-border-color: black; /* You can use rgba(...) too */
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+}
+.clock{
+    -fx-background-color: rgba(235, 255, 216, 0.85);
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(235, 255, 216, 0.3);
+    -fx-border-width: 1;
+    -fx-border-color: black; /* You can use rgba(...) too */
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    /* Simulated box shadow using dropshadow effect */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 30, 0, 0, 4);
+}
+.btnaccess{
+    -fx-background-color: #113F67;
+    -fx-text-fill: #C4E1E6;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+
+}
+.btnaccess:hover{
+    -fx-background-color: gold;
+    -fx-text-fill: black;    
+}
+.upcoming{
+   -fx-background-color: rgba(84, 122, 122, 0.99);
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-border-color: rgba(84, 122, 122, 0.3);
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 30, 0, 0, 4);
+}
+.lineChart{
+    -fx-legend-visible: false;
+    -fx-background-color: transparent;
+}
+.custom-alert {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+}
+.update{
+    -fx-background-color: #113F67;
+    -fx-text-fill: #C4E1E6;
+    -fx-background-radius: 5;
+    
+
+}
+.update:hover{
+    -fx-background-color: gold;
+    -fx-text-fill: black;    
+}

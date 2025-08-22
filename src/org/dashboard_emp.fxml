@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="864.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Dashboard_empController">
+    <stylesheets>
+        <URL value="@dashboard_emp.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="850.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css" />
+         </stylesheets>
+         <children>
+            <Label layoutX="14.0" layoutY="4.0" text="Employee ID :">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="8.0" layoutY="67.0" prefHeight="242.0" prefWidth="840.0">
+               <children>
+                  <AnchorPane fx:id="rootPane" layoutX="10.0" layoutY="9.0" prefHeight="224.0" prefWidth="200.0" styleClass="clock" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css">
+                     <children>
+                        <ImageView fx:id="weatherImage" fitHeight="55.0" fitWidth="67.0" layoutX="13.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="timeText" layoutX="75.0" layoutY="22.0" text="11:36:10 AM">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="78.0" layoutY="47.0" text="It's Your Time" textFill="RED">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="117.0" text="Today">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="dateText" layoutX="35.0" layoutY="144.0" prefHeight="20.0" prefWidth="143.0" text="29th July 2025" textFill="#ab0d0d">
+                           <font>
+                              <Font name="SimSun" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="45.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleViewAttendanceButton" prefHeight="35.0" styleClass="btnaccess" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css" text="View Attendance" />
+                        <Text fx:id="tempText" layoutX="19.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="43.0">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="seasonText" layoutX="139.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="58.0">
+                            <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Label layoutX="18.0" layoutY="77.0" text="Tempureature :" />
+                        <Label layoutX="140.0" layoutY="77.0" text="Season :" />
+                        <ImageView fx:id="present" fitHeight="19.0" fitWidth="21.0" layoutX="74.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-green-check-mark-64.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="218.0" layoutY="8.0" prefHeight="111.0" prefWidth="200.0" styleClass="clock" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css">
+                     <children>
+                        <Label layoutX="96.0" layoutY="13.0" text="Casual leave">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="109.0" layoutY="39.0" text="Remaing :-" />
+                        <Label layoutX="109.0" layoutY="56.0" text="Used :-" />
+                        <Label layoutX="109.0" layoutY="74.0" text="Total :-" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="48.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="65.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="83.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="176.0" layoutY="39.0" text="0" />
+                        <Label layoutX="153.0" layoutY="57.0" text="0" />
+                        <StackPane layoutX="-6.0" layoutY="-3.0" prefHeight="111.0" prefWidth="114.0">
+                           <children>
+                              <Circle fill="#1f93ff00" layoutX="40.0" layoutY="40.0" radius="35.0" stroke="#e0e0e0" strokeType="CENTERED" strokeWidth="10.0" />
+                              <Label text="0%">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Arc centerX="40.0" centerY="40.0" fill="#2197ff00" length="360.0" radiusX="35.0" radiusY="35.0" startAngle="90.0" stroke="DEEPSKYBLUE" strokeLineCap="ROUND" strokeType="CENTERED" strokeWidth="10.0">
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin></Arc>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="425.0" layoutY="8.0" prefHeight="111.0" prefWidth="200.0" styleClass="clock" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css">
+                     <children>
+                        <Label layoutX="97.0" layoutY="12.0" text="Sick leave">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="114.0" layoutY="36.0" text="Remaing :-" />
+                        <Label layoutX="114.0" layoutY="53.0" text="Used :-" />
+                        <Label layoutX="114.0" layoutY="71.0" text="Total :-" />
+                        <Circle fill="DODGERBLUE" layoutX="105.0" layoutY="45.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="105.0" layoutY="62.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="105.0" layoutY="80.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="181.0" layoutY="37.0" text="0" />
+                        <Label layoutX="158.0" layoutY="55.0" text="0" />
+                        <Label layoutX="161.0" layoutY="73.0" text="0" />
+                        <StackPane layoutX="-4.0" layoutY="-4.0" prefHeight="111.0" prefWidth="114.0">
+                           <children>
+                              <Circle fill="#1f93ff00" layoutX="40.0" layoutY="40.0" radius="35.0" stroke="#e0e0e0" strokeType="CENTERED" strokeWidth="10.0" />
+                              <Label text="0%">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Arc centerX="40.0" centerY="40.0" fill="#2197ff00" length="360.0" radiusX="35.0" radiusY="35.0" startAngle="90.0" stroke="DEEPSKYBLUE" strokeLineCap="ROUND" strokeType="CENTERED" strokeWidth="10.0">
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                              </Arc>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="632.0" layoutY="8.0" prefHeight="111.0" prefWidth="200.0" styleClass="clock" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css">
+                     <children>
+                        <Label layoutX="97.0" layoutY="12.0" text="Half leave">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="114.0" layoutY="36.0" text="Remaing :-" />
+                        <Label layoutX="114.0" layoutY="53.0" text="Used :-" />
+                        <Label layoutX="114.0" layoutY="71.0" text="Total :-" />
+                        <Circle fill="DODGERBLUE" layoutX="105.0" layoutY="45.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="105.0" layoutY="62.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="105.0" layoutY="80.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="181.0" layoutY="38.0" text="0" />
+                        <Label layoutX="160.0" layoutY="55.0" text="0" />
+                        <Label layoutX="161.0" layoutY="73.0" text="0" />
+                        <StackPane layoutX="-4.0" layoutY="-4.0" prefHeight="111.0" prefWidth="114.0">
+                           <children>
+                              <Circle fill="#1f93ff00" layoutX="40.0" layoutY="40.0" radius="35.0" stroke="#e0e0e0" strokeType="CENTERED" strokeWidth="10.0" />
+                              <Label text="0%">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Arc centerX="40.0" centerY="40.0" fill="#2197ff00" length="360.0" radiusX="35.0" radiusY="35.0" startAngle="90.0" stroke="DEEPSKYBLUE" strokeLineCap="ROUND" strokeType="CENTERED" strokeWidth="10.0">
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                              </Arc>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="218.0" layoutY="123.0" prefHeight="111.0" prefWidth="200.0" styleClass="clock" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css">
+                     <children>
+                        <Label layoutX="89.0" layoutY="13.0" text="Unpaid leave">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="109.0" layoutY="39.0" text="Remaing :-" />
+                        <Label layoutX="109.0" layoutY="56.0" text="Used :-" />
+                        <Label layoutX="109.0" layoutY="74.0" text="Total :-" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="48.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="65.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="83.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="175.0" layoutY="41.0" text="0" />
+                        <Label layoutX="154.0" layoutY="58.0" text="0" />
+                        <Label layoutX="154.0" layoutY="76.0" text="0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="425.0" layoutY="123.0" prefHeight="111.0" prefWidth="200.0" styleClass="clock" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css">
+                     <children>
+                        <Label layoutX="89.0" layoutY="13.0" text="Earn leave">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="109.0" layoutY="39.0" text="Remaing :-" />
+                        <Label layoutX="109.0" layoutY="56.0" text="Used :-" />
+                        <Label layoutX="109.0" layoutY="74.0" text="Total :-" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="48.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="65.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="83.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="176.0" layoutY="41.0" text="0" />
+                        <Label layoutX="152.0" layoutY="58.0" text="0" />
+                        <Label layoutX="154.0" layoutY="76.0" text="0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="632.0" layoutY="123.0" prefHeight="111.0" prefWidth="200.0" styleClass="clock" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css">
+                     <children>
+                        <Label layoutX="89.0" layoutY="13.0" text="Total leave">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="109.0" layoutY="39.0" text="Remaing :-" />
+                        <Label layoutX="109.0" layoutY="56.0" text="Used :-" />
+                        <Label layoutX="109.0" layoutY="74.0" text="Total :-" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="48.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="65.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="83.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="176.0" layoutY="41.0" text="0" />
+                        <Label layoutX="152.0" layoutY="58.0" text="0" />
+                        <Label layoutX="154.0" layoutY="76.0" text="0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="216.0" prefHeight="242.0" prefWidth="623.0" styleClass="upcoming" stylesheets="@dashboard_emp.css">
+                     <children>
+                        <Label fx:id="typingLabel" layoutX="125.0" layoutY="94.0" prefHeight="55.0" prefWidth="373.0" text="Upcoming Soon........." textAlignment="CENTER" textFill="#fffefe">
+                           <font>
+                              <Font name="ISOCTEUR" size="30.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+               </children>
+            </AnchorPane>
+            <LineChart fx:id="lineChart" focusTraversable="true" layoutX="8.0" layoutY="313.0" legendSide="LEFT" prefHeight="214.0" prefWidth="319.0" styleClass="lineChart" stylesheets="@dashboard_emp.css" title="Attendance Comparison Chart">
+               <xAxis>
+                   <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis prefHeight="189.0" prefWidth="29.0" side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <BarChart layoutX="544.0" layoutY="312.0" prefHeight="214.0" prefWidth="299.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis prefHeight="151.0" prefWidth="29.0" side="LEFT" />
+               </yAxis>
+            </BarChart>
+            <AnchorPane layoutX="17.0" layoutY="527.0" prefHeight="72.0" prefWidth="824.0" styleClass="clock" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css">
+               <children>
+                  <Label layoutX="398.0" layoutY="19.0" prefHeight="30.0" prefWidth="99.0" text="Daily Sheet">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="504.0" layoutY="20.0" prefHeight="30.0" prefWidth="165.0" promptText="What can u do today" />
+                  <Label layoutX="30.0" layoutY="27.0" text="Active Time :" />
+                  <Label fx:id="activetime" layoutX="109.0" layoutY="28.0" text="00:00:00">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="198.0" layoutY="28.0" text="Extra Time :" />
+                  <Label fx:id="extratime" layoutX="271.0" layoutY="29.0" text="00:00:00">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Button layoutX="681.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleDailysheetButton" prefHeight="35.0" styleClass="btnaccess" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css" text="Submit Daily Sheet">
+                    <font>
+                        <Font name="Serif Regular" size="12.0" />
+                     </font>  
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Label fx:id="empIdLabel" layoutX="86.0" layoutY="3.0" text="Darsh082002">
+               <font>
+                  <Font size="11.0" />
+               </font></Label>
+            <Label layoutX="661.0" layoutY="6.0" text="INVOMAX Engineering Solution LLP">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="639.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@emp_logo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="uani" layoutX="56.0" layoutY="27.0" text="Employee Name">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="jobRoleLabel" layoutX="56.0" layoutY="45.0" text="Job Role">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <HBox alignment="TOP_CENTER" layoutX="137.0" layoutY="26.0" prefHeight="37.0" prefWidth="713.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnMarkAttendance" graphicTextGap="0.0" lineSpacing="2.0" mnemonicParsing="false" onAction="#handleMarkAttendance" prefHeight="35.0" styleClass="btnaccess" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css" text="Mark Attendance" textAlignment="CENTER">
+                     <font>
+                        <Font name="Serif Regular" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="35.0" styleClass="btnaccess" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css" text="Mail" textAlignment="CENTER">
+                     <font>
+                        <Font name="Serif Regular" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleTODOButton" prefHeight="35.0" styleClass="btnaccess" stylesheets="@../../Invomax_@0.1/src/org/invomax/dailysheet.css" text="TODO List">
+                     <font>
+                        <Font name="Serif Regular" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleDailysheetButton" prefHeight="35.0" styleClass="btnaccess" stylesheets="@../../Invomax_@0.1/src/org/invomax/dailysheet.css" text="Daily Sheet">
+                     <font>
+                        <Font name="Serif Regular" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleRequestLeaveButton" prefHeight="35.0" styleClass="btnaccess" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css" text="Request Leave">
+                     <font>
+                        <Font name="Serif Regular" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleProjectButton" prefHeight="35.0" styleClass="btnaccess" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css" text="Project's" textAlignment="CENTER">
+                     <font>
+                        <Font name="Serif Regular" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleTaskButton" prefHeight="35.0" styleClass="btnaccess" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css" text="Task's" textAlignment="CENTER">
+                     <font>
+                        <Font name="Serif Regular" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleLogoutButton" prefHeight="35.0" styleClass="btnaccess" stylesheets="@../../Invomax_@0.1/src/org/invomax/emp_dashboard.css" text="Logout" textAlignment="CENTER">
+                     <font>
+                        <Font name="Serif Regular" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <AnchorPane layoutX="326.0" layoutY="317.0" prefHeight="200.0" prefWidth="517.0" styleClass="upcoming" stylesheets="@dashboard_emp.css">
+               <children>
+                  <Label layoutX="62.0" layoutY="100.0" prefHeight="17.0" prefWidth="165.0" text="Upcoming Soon........." textAlignment="CENTER" textFill="#fffefe">
+                     <font>
+                        <Font name="ISOCTEUR" size="14.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <ImageView fx:id="profileImageView" fitHeight="30.0" fitWidth="30.0" layoutX="17.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@female.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="updatebtn" layoutX="817.0" layoutY="26.0" mnemonicParsing="false" onAction="#onCheckUpdate" prefHeight="35.0" prefWidth="40.0" styleClass="update" stylesheets="@dashboard_emp.css">
+               <graphic>
+                  <ImageView fx:id="profileImageView" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="update" />
+               </graphic>
+               <padding>
+                  <Insets bottom="-5.0" left="-5.0" right="-5.0" top="-5.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.LogindoneController">
+    <stylesheets>
+        <URL value="@logindone.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="512.0" fitWidth="533.0" layoutX="144.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@K8WOUutzmy.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
