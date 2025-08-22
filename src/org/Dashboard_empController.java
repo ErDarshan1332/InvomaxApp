@@ -1147,162 +1147,148 @@ private void setProfileImage(String gender) {
     return gender;
     }
 
+
+
 @FXML
-private void onCheckUpdate(ActionEvent event) {
-    // 🔹 GitHub Release API URL (latest release)
-    String versionUrl = "https://api.github.com/repos/ErDarshan1332/InvomaxApp/releases/latest";
+    private void onCheckUpdate(ActionEvent event) {
+        String versionUrl = "https://api.github.com/repos/ErDarshan1332/InvomaxApp/releases/latest";
 
-    try {
-        URL url = new URL(versionUrl);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Accept", "application/vnd.github.v3+json");
+        try {
+            URL url = new URL(versionUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/vnd.github.v3+json");
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        StringBuilder response = new StringBuilder();
-        String line;
-        while ((line = in.readLine()) != null) {
-            response.append(line);
-        }
-        in.close();
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = in.readLine()) != null) response.append(line);
+            in.close();
 
-        JSONObject json = new JSONObject(response.toString());
+            JSONObject json = new JSONObject(response.toString());
+            String latestVersion = json.optString("tag_name", "v0.0.0");
 
-        // 🔹 Latest version from GitHub release
-        String latestVersion = json.optString("tag_name", "v0.0.0");
-
-        // 🔹 Download URL from assets array
-        JSONArray assets = json.getJSONArray("assets");
-        if (assets.length() == 0) {
-            showErrorAlert("Error", "No downloadable files found in the latest release.");
-            return;
-        }
-        String downloadUrl = assets.getJSONObject(0).getString("browser_download_url");
-
-        // 🔹 Compare current app version with latest
-        if (isLatestVersion(AppVersion.CURRENT_VERSION, latestVersion)) {
-            showInfoAlert("No Update Available", "You already have the latest version!");
-        } else {
-            showUpdateDialog(latestVersion, downloadUrl);
-        }
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        showErrorAlert("Error", "Could not check for updates.");
-    }
-}
-
-// 🔹 Version comparison helper
-private boolean isLatestVersion(String current, String latest) {
-    String[] cur = current.replace("v", "").split("\\.");
-    String[] lat = latest.replace("v", "").split("\\.");
-
-    for (int i = 0; i < Math.max(cur.length, lat.length); i++) {
-        int c = (i < cur.length) ? Integer.parseInt(cur[i]) : 0;
-        int l = (i < lat.length) ? Integer.parseInt(lat[i]) : 0;
-        if (c < l) return false; // new version available
-        if (c > l) return true;  // current is ahead
-    }
-    return true; // equal
-}
-
-// 🔹 Update dialog
-private void showUpdateDialog(String latestVersion, String downloadUrl) {
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-    alert.setTitle("Update Available");
-    alert.setHeaderText("Version " + latestVersion + " is available!");
-    alert.setContentText("Do you want to download and install it?");
-
-    ButtonType downloadBtn = new ButtonType("Download");
-    ButtonType cancelBtn = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-    alert.getButtonTypes().setAll(downloadBtn, cancelBtn);
-
-    alert.showAndWait().ifPresent(response -> {
-        if (response == downloadBtn) {
-            showDownloadProgress(downloadUrl, latestVersion);
-        }
-    });
-}
-
-// 🔹 Download progress UI
-private void showDownloadProgress(String fileUrl, String latestVersion) {
-    Stage stage = new Stage();
-    stage.setTitle("Downloading Update...");
-
-    ProgressBar progressBar = new ProgressBar(0);
-    progressBar.setPrefWidth(300);
-    Label lblProgress = new Label("Starting download...");
-
-    VBox vbox = new VBox(10, lblProgress, progressBar);
-    vbox.setPadding(new Insets(20));
-    vbox.setAlignment(Pos.CENTER);
-
-    stage.setScene(new Scene(vbox));
-    stage.show();
-
-    Task<Void> task = new Task<Void>() {
-        @Override
-        protected Void call() throws Exception {
-            URL url = new URL(fileUrl);
-            URLConnection conn = url.openConnection();
-            int fileSize = conn.getContentLength();
-
-            // 🔹 Save file in user home directory
-            File saveFile = new File(System.getProperty("user.home"), "InvomaxApp-" + latestVersion + ".jar");
-
-            try (InputStream in = conn.getInputStream();
-                 FileOutputStream out = new FileOutputStream(saveFile)) {
-
-                byte[] buffer = new byte[4096];
-                int bytesRead;
-                long totalRead = 0;
-
-                while ((bytesRead = in.read(buffer)) != -1) {
-                    out.write(buffer, 0, bytesRead);
-                    totalRead += bytesRead;
-
-                    updateProgress(totalRead, fileSize);
-                    updateMessage(String.format("Downloaded %d%%", (int)((totalRead * 100) / fileSize)));
-                }
-            } catch (Exception ex) {
-                updateMessage("Download failed!");
-                throw ex;
+            JSONArray assets = json.getJSONArray("assets");
+            if (assets.length() == 0) {
+                showErrorAlert("Error", "No downloadable files found in the latest release.");
+                return;
             }
-            return null;
+
+            String downloadUrl = assets.getJSONObject(0).getString("browser_download_url");
+
+            if (isLatestVersion(AppVersion.CURRENT_VERSION, latestVersion)) {
+                showInfoAlert("No Update Available", "You already have the latest version!");
+            } else {
+                showUpdateDialog(latestVersion, downloadUrl);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showErrorAlert("Error", "Could not check for updates.");
         }
-    };
-
-    progressBar.progressProperty().bind(task.progressProperty());
-    lblProgress.textProperty().bind(task.messageProperty());
-
-    task.setOnSucceeded(e -> {
-        stage.close();
-        installUpdate(latestVersion);
-    });
-
-    task.setOnFailed(e -> {
-        stage.close();
-        showErrorAlert("Download Error", "Failed to download the update.");
-    });
-
-    new Thread(task).start();
-}
-
-// 🔹 Install downloaded update
-private void installUpdate(String latestVersion) {
-    try {
-        File newFile = new File(System.getProperty("user.home"), "InvomaxApp-" + latestVersion + ".jar");
-        if (newFile.exists()) {
-            Runtime.getRuntime().exec("java -jar \"" + newFile.getAbsolutePath() + "\"");
-            System.exit(0); 
-        } else {
-            showErrorAlert("Error", "Downloaded file not found.");
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        showErrorAlert("Error", "Could not install the update.");
     }
-}
+
+    private boolean isLatestVersion(String current, String latest) {
+        String[] cur = current.replace("v", "").split("\\.");
+        String[] lat = latest.replace("v", "").split("\\.");
+
+        for (int i = 0; i < Math.max(cur.length, lat.length); i++) {
+            int c = (i < cur.length) ? Integer.parseInt(cur[i]) : 0;
+            int l = (i < lat.length) ? Integer.parseInt(lat[i]) : 0;
+            if (c < l) return false;
+            if (c > l) return true;
+        }
+        return true;
+    }
+
+    private void showUpdateDialog(String latestVersion, String downloadUrl) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Update Available");
+        alert.setHeaderText("Version " + latestVersion + " is available!");
+        alert.setContentText("Do you want to download and install it?");
+
+        ButtonType downloadBtn = new ButtonType("Download");
+        ButtonType cancelBtn = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(downloadBtn, cancelBtn);
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == downloadBtn) showDownloadProgress(downloadUrl, latestVersion);
+        });
+    }
+
+    private void showDownloadProgress(String fileUrl, String latestVersion) {
+        Stage stage = new Stage();
+        stage.setTitle("Downloading Update...");
+
+        ProgressBar progressBar = new ProgressBar(0);
+        progressBar.setPrefWidth(300);
+        Label lblProgress = new Label("Starting download...");
+
+        VBox vbox = new VBox(10, lblProgress, progressBar);
+        vbox.setPadding(new Insets(20));
+        vbox.setAlignment(Pos.CENTER);
+
+        stage.setScene(new Scene(vbox));
+        stage.show();
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                URL url = new URL(fileUrl);
+                URLConnection conn = url.openConnection();
+                int fileSize = conn.getContentLength();
+
+                File saveFile = new File(System.getProperty("user.home"), "InvomaxApp-" + latestVersion + ".jar");
+
+                try (InputStream in = conn.getInputStream();
+                     FileOutputStream out = new FileOutputStream(saveFile)) {
+
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    long totalRead = 0;
+
+                    while ((bytesRead = in.read(buffer)) != -1) {
+                        out.write(buffer, 0, bytesRead);
+                        totalRead += bytesRead;
+
+                        updateProgress(totalRead, fileSize);
+                        updateMessage(String.format("Downloaded %d%%", (int)((totalRead * 100) / fileSize)));
+                    }
+                }
+                return null;
+            }
+        };
+
+        progressBar.progressProperty().bind(task.progressProperty());
+        lblProgress.textProperty().bind(task.messageProperty());
+
+        task.setOnSucceeded(e -> {
+            stage.close();
+            installUpdate(latestVersion);
+        });
+
+        task.setOnFailed(e -> {
+            stage.close();
+            showErrorAlert("Download Error", "Failed to download the update.");
+        });
+
+        new Thread(task).start();
+    }
+
+    private void installUpdate(String latestVersion) {
+        try {
+            File newFile = new File(System.getProperty("user.home"), "InvomaxApp-" + latestVersion + ".jar");
+            if (newFile.exists()) {
+                Runtime.getRuntime().exec("java -jar \"" + newFile.getAbsolutePath() + "\"");
+                System.exit(0);
+            } else showErrorAlert("Error", "Downloaded file not found.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showErrorAlert("Error", "Could not install the update.");
+        }
+    }
+
+   
 
 
 private void showInfoAlert(String title, String msg) {
