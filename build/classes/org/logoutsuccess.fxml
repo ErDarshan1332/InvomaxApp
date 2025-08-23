@@ -22,5 +22,10 @@
             <Font name="ItalicT" size="36.0" />
          </font>
       </Label>
+      <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Celebration.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

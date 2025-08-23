@@ -1178,7 +1178,8 @@ private void setProfileImage(String gender) {
             String downloadUrl = assets.getJSONObject(0).getString("browser_download_url");
 
             if (isLatestVersion(AppVersion.CURRENT_VERSION, latestVersion)) {
-                showInfoAlert("No Update Available", "You already have the latest version!");
+                showErrorAlert("No Update Available", "You already have the latest version!");
+                
             } else {
                 showUpdateDialog(latestVersion, downloadUrl);
             }
